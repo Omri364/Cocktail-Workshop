@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cocktails Workshop</title>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Gochi+Hand&family=Handlee&family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>Cocktails Workshop🍹</h1>
+  </header>
+
+  <form action="/submit" method="POST" class="form">
+    <input type="text" placeholder="Enter a cocktail's name" name="reqDrink">
+    <div class="buttons">
+      <button type="submit" value="Search" name="choice">Search</button>
+      <button type="submit" value="surprise me" name="choice">Surprise Me</button>
+    </div>
+  </form>
+
+  <% if (locals.drink) { %>
+    <div class="content">
+      <h2> <%= drink.strDrink %> </h2>
+      <hr/>
+      <img class="drink-image" src="<%= drink.strDrinkThumb %>" height="200px"/>
+      <h3>Ingredients:</h3>
+      <ul class="ingredients-list">
+        <% for (var i = 1; i <= 15; i++) {  
+          const ingredient = drink['strIngredient' + i];
+          const measure = drink['strMeasure' + i];
+          if (ingredient) { %>
+            <li class="ingredients-item"><%= ingredient %>  -  <%= measure %></li>
+        <% } } %>
+      </ul>
+      <h3>Instructrions:</h3>
+      <p class="instructions"> <%= drink.strInstructions %> </p>
+    </div>
+  <% } %>
+
+</body>
+
+</html>
